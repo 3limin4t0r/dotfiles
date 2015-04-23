@@ -25,7 +25,7 @@ set laststatus=2
 
 syntax enable
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 
 "------------------------------------------------------------------------------"
 " Easy Motion Configuration                                                    "
@@ -51,32 +51,61 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 "------------------------------------------------------------------------------"
+" NERD Tree Configuration                                                      "
+"------------------------------------------------------------------------------"
+" git clone git@github.com:scrooloose/nerdtree.git
+
+map <C-n> :NERDTreeToggle<CR>
+
+"------------------------------------------------------------------------------"
+" NERD Tree Tabs Configuration                                                 "
+"------------------------------------------------------------------------------"
+" git clone git@github.com:jistr/vim-nerdtree-tabs.git
+
+let g:nerdtree_tabs_open_on_console_startup=1
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
+"------------------------------------------------------------------------------"
 " Vim Configuration                                                            "
 "------------------------------------------------------------------------------"
 
 " Autoreload .vimrc on save.
-"autocmd! bufwritepost .vimrc source %
+autocmd! bufwritepost .vimrc source %
 
-" Syntax highlighting
+" Syntax highlighting.
 syntax on
 
-" Line numbers
+" Line numbers.
 set number
 
-" Mouse support
+" Mouse support.
 set mouse=a
 
-" Swapfile
+" Swapfile.
 set swapfile
 
 " Set default location for tmp files.
 set backupdir=~/tmp
 set directory=~/tmp
 
-" Set tabs to spaces
+" Set tabs to spaces.
 set tabstop=4
 set shiftwidth=4
 set expandtab
 
-" make backspace work like most other apps
+" Make backspace work like most other apps.
 set backspace=2 
+
+" Incremental search.
+set incsearch
+
+" Highlight search.
+set hlsearch
+
+" C style indention.
+set cindent
+
+" Open file at same position as closed.
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
